@@ -1,0 +1,10 @@
+{ "name": "entropy-game",
+  "author": "frogbotherer <therealchriswest@hotmail.com>",
+  "dependencies": {
+      "cordova": "3.x.x"
+  },
+  "devDependencies": {
+      "grunt-cli": "0.x.x",
+      "grunt": "0.x.x"
+  }
+}
