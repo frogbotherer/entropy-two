@@ -32,16 +32,19 @@ module.exports = (grunt) ->
                 ]
 
         # jasmine tests
-        jasmine:
+        sencha_jasmine:
             tests:
-#                src: ["app/**/*.js","app.js","bootstrap.js","touch/**/*.js"]
                 options:
+                    extFramework: "touch/" # TODO: relies on symlink from sencha-touch-all-debug.js to ext-all-debug.js
+#                    extLoaderPaths:
+#                        "EntropyGame": "./app"
                     specs: "tests/specs/**/*.js"
-                    helpers: "tests/helpers/**/*.js"
-                    template : require "grunt-template-jasmine-istanbul"
-                    templateOptions:
-                        coverage: "build/reports/coverage.json"
-                        report: "build/reports/coverage"
+#                    helpers: "tests/helpers/**/*.js" # TODO: put in once helpers exist
+#                    TODO: write better template to integrate sencha and istanbul
+#                    template : require "grunt-template-jasmine-istanbul"
+#                    templateOptions:
+#                        coverage: "build/reports/coverage.json"
+#                        report: "build/reports/coverage"
 
         # watch config
         watch:
@@ -50,12 +53,13 @@ module.exports = (grunt) ->
                 tasks: ["coffee_jshint:src","coffee:src"]
             tests:
                 files: ["tests/**/*.js"]
-                tasks: ["coffee_jshint:tests","coffee:tests","jasmine:tests"]
+                tasks: ["coffee_jshint:tests","coffee:tests","sencha_jasmine:tests"]
 
     grunt.loadNpmTasks "grunt-coffee-jshint"
     grunt.loadNpmTasks "grunt-contrib-coffee"
-    grunt.loadNpmTasks "grunt-contrib-jasmine"
+#    grunt.loadNpmTasks "grunt-contrib-jasmine"
+    grunt.loadNpmTasks "grunt-sencha-jasmine"
     grunt.loadNpmTasks "grunt-contrib-watch"
 
     grunt.registerTask "default", "coffee:src"
-    grunt.registerTask "default", "jasmine:tests"
+    grunt.registerTask "default", "sencha_jasmine:tests"
