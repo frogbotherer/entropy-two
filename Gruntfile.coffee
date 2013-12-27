@@ -7,14 +7,14 @@ module.exports = (grunt) ->
         coffee_jshint:
             options:
                 globals: ["Ext"]
-            source:
+            src:
                 src: "app/**/*.coffee"
-            specs:
+            tests:
                 src: "tests/specs/**/*.coffee"
 
         # coffee compilation for all app and test coffee scripts
         coffee:
-            compile:
+            src:
                 options:
                     sourceMap: false
                 files: [
@@ -22,7 +22,7 @@ module.exports = (grunt) ->
                     src: ["app/**/*.coffee"]
                     ext: ".js"
                 ]
-            compile_tests:
+            tests:
                 options:
                     sourceMap: false
                 files: [
@@ -33,7 +33,7 @@ module.exports = (grunt) ->
 
         # jasmine tests
         jasmine:
-            test:
+            tests:
 #                src: ["app/**/*.js","app.js","bootstrap.js","touch/**/*.js"]
                 options:
                     specs: "tests/specs/**/*.js"
@@ -47,16 +47,15 @@ module.exports = (grunt) ->
         watch:
             src:
                 files: ["app/**/*.coffee", "tests/**/*.coffee"]
-                tasks: ["coffee_jshint:source","coffee:compile"]
-            test:
+                tasks: ["coffee_jshint:src","coffee:src"]
+            tests:
                 files: ["tests/**/*.js"]
-                tasks: ["coffee_jshint:specs","coffee:compile_tests","jasmine:test"]
+                tasks: ["coffee_jshint:tests","coffee:tests","jasmine:tests"]
 
     grunt.loadNpmTasks "grunt-coffee-jshint"
     grunt.loadNpmTasks "grunt-contrib-coffee"
     grunt.loadNpmTasks "grunt-contrib-jasmine"
     grunt.loadNpmTasks "grunt-contrib-watch"
 
-
-    grunt.registerTask "default", "coffee:compile"
-    grunt.registerTask "default", "jasmine:test"
+    grunt.registerTask "default", "coffee:src"
+    grunt.registerTask "default", "jasmine:tests"
