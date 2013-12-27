@@ -3,21 +3,38 @@ module.exports = (grunt) ->
         # set package information from npm package
         pkg: grunt.file.readJSON "package.json"
 
+        # jshint
+        coffee_jshint:
+            options:
+                globals: ["Ext"]
+            source:
+                src: "app/**/*.coffee"
+            specs:
+                src: "tests/specs/**/*.coffee"
+
         # coffee compilation for all app and test coffee scripts
         coffee:
             compile:
                 options:
-                    sourceMap: true
+                    sourceMap: false
                 files: [
                     expand: true
-                    src: ["app/**/*.coffee", "tests/**/*.coffee"]
+                    src: ["app/**/*.coffee"]
+                    ext: ".js"
+                ]
+            compile_tests:
+                options:
+                    sourceMap: false
+                files: [
+                    expand: true
+                    src: ["tests/**/*.coffee"]
                     ext: ".js"
                 ]
 
         # jasmine tests
         jasmine:
             test:
-                src: ["app/**/*.js","app.js","bootstrap.js","touch/**/*.js"]
+#                src: ["app/**/*.js","app.js","bootstrap.js","touch/**/*.js"]
                 options:
                     specs: "tests/specs/**/*.js"
                     helpers: "tests/helpers/**/*.js"
@@ -30,14 +47,16 @@ module.exports = (grunt) ->
         watch:
             src:
                 files: ["app/**/*.coffee", "tests/**/*.coffee"]
-                tasks: ["compile"]
+                tasks: ["coffee_jshint:source","coffee:compile"]
             test:
                 files: ["tests/**/*.js"]
-                tasks: ["test"]
+                tasks: ["coffee_jshint:specs","coffee:compile_tests","jasmine:test"]
 
+    grunt.loadNpmTasks "grunt-coffee-jshint"
     grunt.loadNpmTasks "grunt-contrib-coffee"
     grunt.loadNpmTasks "grunt-contrib-jasmine"
     grunt.loadNpmTasks "grunt-contrib-watch"
+
 
     grunt.registerTask "default", "coffee:compile"
     grunt.registerTask "default", "jasmine:test"
