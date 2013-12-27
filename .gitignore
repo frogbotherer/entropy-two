@@ -1,0 +1,7 @@
+*.map
+.sencha/
+build/
+cordova/
+node_modules/
+resources/sass/.sass-cache/
+touch/

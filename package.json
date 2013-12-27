@@ -10,6 +10,7 @@
       "coffee-script": "1.x.x",
       "grunt": "0.x.x",
       "grunt-cli": "0.x.x",
+      "grunt-contrib-coffee": "0.x.x",
       "grunt-contrib-jasmine": "0.x.x",
       "grunt-sencha-jasmine": "0.x.x",
       "node-sass": "0.x.x"
