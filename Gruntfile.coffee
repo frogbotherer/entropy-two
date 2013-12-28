@@ -18,7 +18,7 @@ module.exports = (grunt) ->
         coffee:
             src:
                 options:
-                    sourceMap: false
+                    sourceMap: false # TODO: should be true
                 files: [
                     expand: true
                     src: ["app/**/*.coffee"]
@@ -57,10 +57,10 @@ module.exports = (grunt) ->
         # watch config
         watch:
             src:
-                files: ["app/**/*.coffee", "tests/**/*.coffee"]
+                files: ["app/**/*.coffee"]
                 tasks: ["compile"]
             tests:
-                files: ["tests/**/*.js"]
+                files: ["tests/**/*.coffee"]
                 tasks: ["test"]
 
     grunt.loadNpmTasks "grunt-coffee-jshint"
@@ -69,5 +69,5 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-sencha-dependencies"
     grunt.loadNpmTasks "grunt-contrib-watch"
 
-    grunt.registerTask "compile", ["coffee_jshint:src","coffee:src","sencha_dependencies:src"]
-    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","sencha_dependencies:src","sencha_jasmine:tests"]
+    grunt.registerTask "compile", ["coffee_jshint:src","coffee:src"]
+    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","sencha_jasmine:tests"]
