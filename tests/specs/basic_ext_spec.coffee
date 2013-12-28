@@ -1,12 +1,10 @@
 describe "During initialization and setup, the application...", ->
  
-    it "should load ExtJS 4", ->
+    it "should load Sencha 2.3", ->
         expect( Ext ).toBeDefined()
         expect( Ext.getVersion() ).toBeTruthy()
-        expect( Ext.getVersion().major ).toEqual( 4 )
+        expect( Ext.getVersion().major ).toEqual( 2 )
+        expect( Ext.getVersion().minor ).toEqual( 3 )
  
  
-    it "should set the Application name", ->
-        expect( window.Application ).toBeDefined()
-        expect( window.Application.name ).toEqual( "Entropy" )
  
