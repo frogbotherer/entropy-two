@@ -5,6 +5,7 @@
   },
   "devDependencies": {
       "ripple-emulator": "0.x.x",
+      "grunt-ripple-emulator": "0.x.x",
       "coffee-script": "1.x.x",
       "grunt": "0.x.x",
       "grunt-cli": "0.x.x",
@@ -17,6 +18,7 @@
       "grunt-sencha-dependencies": "0.x.x",
       "grunt-istanbul": "0.x.x",
       "grunt-plato": "0.x.x",
+      "grunt-jsduck": "0.x.x",
       "node-sass": "0.x.x"
   }
 }

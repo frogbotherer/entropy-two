@@ -35,7 +35,7 @@ module.exports = (grunt) ->
 
         # sencha dependencies
         sencha_dependencies:
-            src: "."
+            build: "."
             options:
                 appFile: "app.js"
 
@@ -57,18 +57,32 @@ module.exports = (grunt) ->
         sencha_jasmine:
             tests:
                 options:
-                    extFramework: "touch/" # TODO: relies on symlink from sencha-touch-all-debug.js to ext-all-debug.js
+                    extFramework: "touch/" # produces 404 on ext-all-debug.js - we use sencha-touch-all-debug instead (in helpers below)
                     extLoaderPaths:
                         "entropy": "build/output/coverage/app/" # "entropy": "app/"
                     specs: "tests/specs/**/*.js"
-                    helpers: ["node_modules/jasmine-sencha/jasmine-sencha.js"]
+                    helpers: ["touch/sencha-touch-all-debug.js","node_modules/jasmine-sencha/jasmine-sencha.js"]
                     keepRunner: false
 
         # plato setup
         plato:
-            tests:
+            build:
                 files:
-                    "build/reports/plato": "app/**/*.js"
+                    "build/reports/plato": "<%= sencha_dependencies_build_app %>"
+
+        # jsduck generated documentation
+        jsduck:
+            build:
+                src: "<%= sencha_dependencies_build_app %>"
+                dest: "build/docs"
+
+        # ripple emulator
+        ripple:
+            run:
+                options:
+                    path: process.cwd()
+                    open: false
+                    keepAlive: true
 
         # watch config
         watch:
@@ -86,9 +100,13 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-contrib-watch"
     grunt.loadNpmTasks "grunt-istanbul"
     grunt.loadNpmTasks "grunt-plato"
+    grunt.loadNpmTasks "grunt-jsduck"
+    grunt.loadNpmTasks "grunt-ripple-emulator"
 
     grunt.registerTask "compile", ["coffee_jshint:src","coffee:src"]
-    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","storeCoverage","makeReport","plato:tests"]
+    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","storeCoverage","makeReport"]
+    grunt.registerTask "build", ["sencha_dependencies:build","plato:build","jsduck:build"]
+    grunt.registerTask "run", ["ripple:run"]
 
     # for istanbul storeReport
     grunt.event.on "jasmine.coverage", (coverage) ->
