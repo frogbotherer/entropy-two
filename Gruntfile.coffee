@@ -11,7 +11,7 @@ module.exports = (grunt) ->
                 src: "app/**/*.coffee"
             tests:
                 options:
-                    globals: ["Ext","describe","it","expect"]
+                    globals: ["Ext","entropy","describe","it","expect","beforeEach"]
                 src: "tests/specs/**/*.coffee"
 
         # coffee compilation for all app and test coffee scripts
@@ -39,20 +39,36 @@ module.exports = (grunt) ->
             options:
                 appFile: "app.js"
 
+        # istanbul setup
+        instrument:
+            files: "app/**/*.js"
+            options:
+                basePath: "build/output/coverage"
+        storeCoverage:
+            options:
+                dir: "build/output/coverage"
+        makeReport:
+            src: "build/output/coverage/*.json"
+            options:
+                type: "lcov"
+                dir: "build/reports"
+                
         # jasmine tests
         sencha_jasmine:
             tests:
                 options:
                     extFramework: "touch/" # TODO: relies on symlink from sencha-touch-all-debug.js to ext-all-debug.js
                     extLoaderPaths:
-                        "entropy": "app/"
+                        "entropy": "build/output/coverage/app/" # "entropy": "app/"
                     specs: "tests/specs/**/*.js"
-#                    helpers: "tests/helpers/**/*.js" # TODO: put in once helpers exist
-#                    TODO: write better template to integrate sencha and istanbul
-#                    template: require "grunt-template-jasmine-istanbul"
-#                    templateOptions:
-#                        coverage: "build/reports/coverage.json"
-#                        report: "build/reports/coverage"
+                    helpers: ["node_modules/jasmine-sencha/jasmine-sencha.js"]
+                    keepRunner: false
+
+        # plato setup
+        plato:
+            tests:
+                files:
+                    "build/reports/plato": "app/**/*.js"
 
         # watch config
         watch:
@@ -68,6 +84,12 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-sencha-jasmine"
     grunt.loadNpmTasks "grunt-sencha-dependencies"
     grunt.loadNpmTasks "grunt-contrib-watch"
+    grunt.loadNpmTasks "grunt-istanbul"
+    grunt.loadNpmTasks "grunt-plato"
 
     grunt.registerTask "compile", ["coffee_jshint:src","coffee:src"]
-    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","sencha_jasmine:tests"]
+    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","storeCoverage","makeReport","plato:tests"]
+
+    # for istanbul storeReport
+    grunt.event.on "jasmine.coverage", (coverage) ->
+        global.__coverage__ = coverage
