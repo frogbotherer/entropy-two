@@ -1,4 +1,4 @@
-Ext.define "entropy.model.Game", ->
+Ext.define "entropy.model.Game",
     extend: "Ext.data.Model"
     config:
         fields: [
@@ -6,7 +6,7 @@ Ext.define "entropy.model.Game", ->
             type: 'int'
         ,
             name: 'hash'
-            type: 'auto'
+            type: 'string'
         ,
             name: 'difficulty'
             type: 'int'

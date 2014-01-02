@@ -13,7 +13,7 @@ Ext.define 'entropy.view.Main',
                 docked: 'top'
                 xtype: 'titlebar'
                 title: 'Welcome to Sencha Touch 2'
-            html: """woop woop cw woz ere innit woop woop woop the 
+            html: """cw woz ere innit the 
                     contents of <a target='_blank' href=\"app/view/Main.js\">app/view/Main.js</a> - edit that file
                     and refresh to change what's rendered here."""
         , # /item 0

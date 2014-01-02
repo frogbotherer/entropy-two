@@ -6,6 +6,6 @@ cordova/
 node_modules/
 resources/sass/.sass-cache/
 touch/
-app/**/*.js
-tests/**/*.js
+app/*/*.js
+tests/specs/*/*.js
 _SpecRunner.html

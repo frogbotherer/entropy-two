@@ -11,7 +11,7 @@ module.exports = (grunt) ->
                 src: "app/**/*.coffee"
             tests:
                 options:
-                    globals: ["Ext","entropy","describe","it","expect","beforeEach"]
+                    globals: ["Ext","entropy","describe","it","expect","beforeEach","alert"]
                 src: "tests/specs/**/*.coffee"
 
         # coffee compilation for all app and test coffee scripts
@@ -41,7 +41,7 @@ module.exports = (grunt) ->
 
         # istanbul setup
         instrument:
-            files: "app/**/*.js"
+            files: ["app/**/*.js","app.js"]
             options:
                 basePath: "build/output/coverage"
         storeCoverage:
@@ -59,7 +59,7 @@ module.exports = (grunt) ->
                 options:
                     extFramework: "touch/" # produces 404 on ext-all-debug.js - we use sencha-touch-all-debug instead (in helpers below)
                     extLoaderPaths:
-                        "entropy": "build/output/coverage/app/" # "entropy": "app/"
+                        "entropy": ["build/output/coverage/app"] # "entropy": "app/"
                     specs: "tests/specs/**/*.js"
                     helpers: ["touch/sencha-touch-all-debug.js","node_modules/jasmine-sencha/jasmine-sencha.js"]
                     keepRunner: false
@@ -90,9 +90,13 @@ module.exports = (grunt) ->
                 files: ["app/**/*.coffee"]
                 tasks: ["compile"]
             tests:
-                files: ["tests/**/*.coffee"]
+                files: ["tests/**/*.coffee","app.js"]
                 tasks: ["test"]
+            all:
+                files: ["app/**/*.coffee","tests/**/*.coffee","app.js"]
+                tasks: ["compile_and_test"]
 
+    # load tasks
     grunt.loadNpmTasks "grunt-coffee-jshint"
     grunt.loadNpmTasks "grunt-contrib-coffee"
     grunt.loadNpmTasks "grunt-sencha-jasmine"
@@ -103,11 +107,20 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-jsduck"
     grunt.loadNpmTasks "grunt-ripple-emulator"
 
+    # register tasks
     grunt.registerTask "compile", ["coffee_jshint:src","coffee:src"]
     grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","storeCoverage","makeReport"]
     grunt.registerTask "build", ["sencha_dependencies:build","plato:build","jsduck:build"]
     grunt.registerTask "run", ["ripple:run"]
 
+    # register metatasks
+    grunt.registerTask "compile_and_test", ["compile","test"]
+
     # for istanbul storeReport
     grunt.event.on "jasmine.coverage", (coverage) ->
         global.__coverage__ = coverage
+
+    # only compile stuff that's actually changed
+    grunt.event.on "watch", (action, filepath) ->
+        grunt.config "coffee_jshint:#{action}"
+        grunt.config "coffee:#{action}"
