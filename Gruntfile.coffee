@@ -7,11 +7,18 @@ module.exports = (grunt) ->
         coffee_jshint:
             src:
                 options:
-                    globals: ["Ext"]
+                    globals: [
+                        "Ext",
+                        "entropy","Coord","Vector",
+                        ]
                 src: "app/**/*.coffee"
             tests:
                 options:
-                    globals: ["Ext","entropy","describe","it","expect","beforeEach","alert"]
+                    globals: [
+                        "Ext",
+                        "entropy","Coord","Vector",
+                        "describe","it","expect","beforeEach","alert",
+                        ]
                 src: "tests/specs/**/*.coffee"
 
         # coffee compilation for all app and test coffee scripts
@@ -78,11 +85,15 @@ module.exports = (grunt) ->
 
         # ripple emulator
         ripple:
+            options:
+                path: process.cwd()
+                open: false
             run:
                 options:
-                    path: process.cwd()
-                    open: false
                     keepAlive: true
+            watch_run:
+                options:
+                    keepAlive: false
 
         # watch config
         watch:
