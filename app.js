@@ -14,7 +14,9 @@ Ext.application({
     name: 'entropy',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'entropy.util.Coord',
+        'entropy.util.Vector',
     ],
 
     views: [

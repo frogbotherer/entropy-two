@@ -18,7 +18,7 @@
       "grunt-sencha-dependencies": "0.x.x",
       "grunt-istanbul": "0.x.x",
       "grunt-plato": "0.x.x",
-      "grunt-jsduck": "0.x.x",
+      "grunt-jsduck": "dpashkevich/grunt-jsduck",
       "node-sass": "0.x.x"
   }
 }

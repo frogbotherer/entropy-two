@@ -81,6 +81,7 @@ module.exports = (grunt) ->
         jsduck:
             build:
                 src: "<%= sencha_dependencies_build_app %>"
+                #src: "app/**/*.js"
                 dest: "build/docs"
 
         # ripple emulator

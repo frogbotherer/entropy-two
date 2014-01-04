@@ -48,3 +48,12 @@ describe "Coord object", ->
     it "should raise an exception if adding a non-vector", ->
         a = new Coord(3, 2)
         expect(-> a.add(1)).toThrow(new Error("Can't add 1 to Coord(3, 2)"))
+
+    it "should let a coord be moved by a vector", ->
+        a = new Coord(2, 4)
+        v = new Vector(1, -2)
+        
+        a.move(v)
+
+        expect(a.x).toBe(3)
+        expect(a.y).toBe(2)
