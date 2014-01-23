@@ -1,3 +1,4 @@
+# Represents simple 2d vectors
 Ext.define "entropy.util.Vector",
     alternateClassName: "Vector"
 
