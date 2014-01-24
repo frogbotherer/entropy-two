@@ -71,6 +71,13 @@ module.exports = (grunt) ->
                     helpers: ["touch/sencha-touch-all-debug.js","node_modules/jasmine-sencha/jasmine-sencha.js"]
                     keepRunner: false
 
+        # cucumber tests
+        cucumberjs:
+            tests:
+                src: "tests/features"
+                options:
+                    steps: "tests/steps"
+
         # plato setup
         plato:
             build:
@@ -112,6 +119,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-coffee-jshint"
     grunt.loadNpmTasks "grunt-contrib-coffee"
     grunt.loadNpmTasks "grunt-sencha-jasmine"
+    grunt.loadNpmTasks "grunt-cucumber"
     grunt.loadNpmTasks "grunt-sencha-dependencies"
     grunt.loadNpmTasks "grunt-contrib-watch"
     grunt.loadNpmTasks "grunt-istanbul"
@@ -121,7 +129,7 @@ module.exports = (grunt) ->
 
     # register tasks
     grunt.registerTask "compile", ["coffee_jshint:src","coffee:src"]
-    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","storeCoverage","makeReport"]
+    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","cucumberjs:tests","storeCoverage","makeReport"]
     grunt.registerTask "build", ["sencha_dependencies:build","plato:build","jsduck:build"]
     grunt.registerTask "run", ["ripple:run"]
 
