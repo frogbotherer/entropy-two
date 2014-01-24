@@ -8,4 +8,5 @@ resources/sass/.sass-cache/
 touch/
 app/*/*.js
 tests/specs/*/*.js
+tests/steps/*.js
 _SpecRunner.html
