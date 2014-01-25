@@ -18,6 +18,7 @@
       "grunt-sencha-dependencies": "0.x.x",
       "cucumber": "latest",
       "grunt-cucumber": "latest",
+      "spooky": "latest",
       "grunt-istanbul": "0.x.x",
       "grunt-plato": "0.x.x",
       "grunt-jsduck": "dpashkevich/grunt-jsduck",

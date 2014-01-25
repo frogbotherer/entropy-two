@@ -69,7 +69,7 @@ module.exports = (grunt) ->
                         "entropy": ["build/output/coverage/app"] # "entropy": "app/"
                     specs: "tests/specs/**/*.js"
                     helpers: ["touch/sencha-touch-all-debug.js","node_modules/jasmine-sencha/jasmine-sencha.js"]
-                    keepRunner: false
+                    keepRunner: true
 
         # cucumber tests
         cucumberjs:

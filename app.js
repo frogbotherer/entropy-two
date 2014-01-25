@@ -24,7 +24,9 @@ Ext.application({
     ],
 
     models: [
-        'Game'
+        'entropy.model.Shipyard',
+        'entropy.model.Component',
+        'entropy.model.ComponentInstance'
     ],
 
     icon: {
