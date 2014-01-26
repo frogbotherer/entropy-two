@@ -9,14 +9,14 @@ module.exports = (grunt) ->
                 options:
                     globals: [
                         "Ext",
-                        "entropy","Coord","Vector",
+                        "entropy","Coord","Vector","Grid",
                         ]
                 src: "app/**/*.coffee"
             tests:
                 options:
                     globals: [
                         "Ext",
-                        "entropy","Coord","Vector",
+                        "entropy","Coord","Vector","Grid",
                         "describe","it","expect","beforeEach","alert",
                         ]
                 src: "tests/specs/**/*.coffee"

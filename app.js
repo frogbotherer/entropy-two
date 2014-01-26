@@ -17,6 +17,7 @@ Ext.application({
         'Ext.MessageBox',
         'entropy.util.Coord',
         'entropy.util.Vector',
+        'entropy.util.Grid'
     ],
 
     views: [
@@ -25,6 +26,7 @@ Ext.application({
 
     models: [
         'entropy.model.Shipyard',
+        'entropy.model.Ship',
         'entropy.model.Component',
         'entropy.model.ComponentInstance'
     ],
