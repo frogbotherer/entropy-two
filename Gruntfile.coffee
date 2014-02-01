@@ -17,7 +17,7 @@ module.exports = (grunt) ->
                     globals: [
                         "Ext",
                         "entropy","Coord","Vector","Grid",
-                        "describe","it","expect","beforeEach","alert",
+                        "describe","it","xit","expect","beforeEach","alert","fail"
                         ]
                 src: "tests/specs/**/*.coffee"
 
@@ -154,3 +154,4 @@ module.exports = (grunt) ->
     grunt.event.on "watch", (action, filepath) ->
         grunt.config "coffee_jshint:#{action}"
         grunt.config "coffee:#{action}"
+        grunt.config "cson:#{action}"

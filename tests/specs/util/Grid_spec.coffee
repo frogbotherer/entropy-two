@@ -35,14 +35,14 @@ describe "Grid object", ->
             0, 1, 0
             ]
         a = new Grid(new Coord(2, 1), testLayout)
-        expect("#{a}").toBe("Grid(\n1 1\n 1 \n)")
+        expect("#{a}").toEqual("Grid(\n1 1\n 1 \n)")
 
     it "should act as an Ext data type", ->
         Ext.syncRequire("entropy.model.Ship")
-        a = new Grid(new Coord(2, 1), [0,1,0,1,1,1])
-        s = new entropy.model.Ship
-            name: "Test Ship"
-            grid: a
-        s.save
-            success: (s) ->
-                expect(s.getId()).not.toBe(undefined)
+        entropy.model.Ship.load 2, # pod
+            success: (pod) ->
+                a = pod.get("grid")
+                expect("#{a}").toEqual("Grid(\n1\n)")
+            failure: (pod) ->
+                fail()
+                
