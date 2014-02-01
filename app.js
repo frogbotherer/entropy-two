@@ -21,12 +21,14 @@ Ext.application({
     ],
 
     views: [
-        'Main'
+        'Main',
+        'Station'
     ],
 
     models: [
         'entropy.model.Shipyard',
         'entropy.model.Ship',
+        'entropy.model.ShipInstance',
         'entropy.model.Component',
         'entropy.model.ComponentInstance'
     ],
@@ -54,7 +56,9 @@ Ext.application({
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('entropy.view.Main'));
+        // TODO: Ext.Viewport.add(Ext.create('entropy.view.Main'));
+        //       for now just start in the station
+        Ext.Viewport.add(Ext.create('entropy.view.Station'));
     },
 
     onUpdated: function() {

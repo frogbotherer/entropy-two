@@ -3,4 +3,4 @@ describe "Ship", ->
         Ext.syncRequire "entropy.model.Ship"
 
     it "should load via syncRequire", ->
-        expect(entropy.model.Component).not.toBe(undefined)
+        expect(entropy.model.Ship).not.toBe(undefined)

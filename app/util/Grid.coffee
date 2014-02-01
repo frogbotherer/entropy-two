@@ -1,7 +1,7 @@
 # An unevenly-shaped grid of tiles
 Ext.define "entropy.util.Grid",
     alternateClassName: "Grid"
-    require: ["entropy.util.Vector"]
+    require: ["entropy.util.Coord"]
 
     # An unevenly-shaped grid of tiles
     # @param {Coord} Size of the bounding grid (zero-indexed)
@@ -24,9 +24,10 @@ Ext.define "entropy.util.Grid",
         "Grid(\n#{out})"
 
 # map grid to an Ext type
-Ext.data.Types.GRID =
-    convert: (v, data) ->
-        new entropy.util.Grid(data.gridSize, data.layout)
-    sortType: (v) ->
-        v.gridSize.x  # a bit arbitrary
-    type: 'GRID'
+Ext.apply Ext.data.Types,
+    GRID:
+        convert: (v, data) ->
+            new entropy.util.Grid(data.gridSize, data.layout)
+        sortType: (v) ->
+            v.gridSize.x  # a bit arbitrary
+        type: 'grid'

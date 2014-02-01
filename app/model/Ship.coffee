@@ -1,4 +1,4 @@
-# Represents a space-faring ship, possibly owned by the player
+# Represents a kind of space-faring ship
 Ext.define "entropy.model.Ship",
     extend: "Ext.data.Model"
     config:
@@ -11,6 +11,9 @@ Ext.define "entropy.model.Ship",
         ]
         identifier: 'uuid'
         proxy:
-            type: 'localstorage'
-            id: 'entropy.model.Ship'
+            type: 'ajax'
+            url: 'resources/data/Ships.json'
+            reader:
+                type: 'json'
+                rootProperty: 'ships'
         

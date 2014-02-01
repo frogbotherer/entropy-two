@@ -638,7 +638,23 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "entropy.view.Main": []
+  "entropy.model.Component": [],
+  "entropy.model.ComponentInstance": [],
+  "entropy.model.Game": [],
+  "entropy.model.Ship": [],
+  "entropy.model.ShipInstance": [],
+  "entropy.model.Shipyard": [],
+  "entropy.util.Coord": [
+    "Coord"
+  ],
+  "entropy.util.Grid": [
+    "Grid"
+  ],
+  "entropy.util.Vector": [
+    "Vector"
+  ],
+  "entropy.view.Main": [],
+  "entropy.view.Station": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1357,7 +1373,19 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "entropy.model.Component": [],
+  "entropy.model.ComponentInstance": [],
+  "entropy.model.Game": [],
+  "entropy.model.Ship": [],
+  "entropy.model.ShipInstance": [],
+  "entropy.model.Shipyard": [],
+  "entropy.util.Coord": [],
+  "entropy.util.Grid": [],
+  "entropy.util.Vector": [],
   "entropy.view.Main": [
+    "widget.main"
+  ],
+  "entropy.view.Station": [
     "widget.main"
   ]
 });

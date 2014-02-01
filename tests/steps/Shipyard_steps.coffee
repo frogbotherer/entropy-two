@@ -1,12 +1,16 @@
 ShipyardSteps = ->
     @Given /the player has a (.*) ship/, (ship, callback) ->
-        callback.pending()
+        s = @shipStore.queryBy (record,id) ->
+            record.get('name') == ship
+        @playerShip = s.first()
+        callback()
 
     @Given /an? (.*) component is in the shipyard/, (component, callback) ->
         callback.pending()
 
     @Given /the ship has no components/, (callback) ->
-        callback.pending()
+        @playerShip.components().removeAll()
+        callback()
 
     @Given /the ship has a (.*) component/, (component, callback) ->
         callback.pending()

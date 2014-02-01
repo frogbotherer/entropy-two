@@ -40,6 +40,15 @@ module.exports = (grunt) ->
                     ext: ".js"
                 ]
 
+        # cson compilation for json
+        cson:
+            src:
+                files: [
+                    expand: true
+                    src: ["resources/data/*.cson"]
+                    ext: ".json"
+                ]
+
         # sencha dependencies
         sencha_dependencies:
             build: "."
@@ -106,18 +115,19 @@ module.exports = (grunt) ->
         # watch config
         watch:
             src:
-                files: ["app/**/*.coffee"]
+                files: ["app/**/*.coffee","resources/data/*.cson"]
                 tasks: ["compile"]
             tests:
                 files: ["tests/**/*.coffee","app.js"]
                 tasks: ["test"]
             all:
-                files: ["app/**/*.coffee","tests/**/*.coffee","app.js"]
+                files: ["app/**/*.coffee","resources/data/*.cson","tests/**/*.coffee","app.js"]
                 tasks: ["compile_and_test"]
 
     # load tasks
     grunt.loadNpmTasks "grunt-coffee-jshint"
     grunt.loadNpmTasks "grunt-contrib-coffee"
+    grunt.loadNpmTasks "grunt-cson"
     grunt.loadNpmTasks "grunt-sencha-jasmine"
     grunt.loadNpmTasks "grunt-cucumber"
     grunt.loadNpmTasks "grunt-sencha-dependencies"
@@ -128,7 +138,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-ripple-emulator"
 
     # register tasks
-    grunt.registerTask "compile", ["coffee_jshint:src","coffee:src"]
+    grunt.registerTask "compile", ["coffee_jshint:src","coffee:src","cson:src"]
     grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","cucumberjs:tests","storeCoverage","makeReport"]
     grunt.registerTask "build", ["sencha_dependencies:build","plato:build","jsduck:build"]
     grunt.registerTask "run", ["ripple:run"]

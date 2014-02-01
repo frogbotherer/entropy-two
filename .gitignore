@@ -5,6 +5,7 @@ build/
 cordova/
 node_modules/
 resources/sass/.sass-cache/
+resources/data/*.json
 touch/
 app/*/*.js
 tests/specs/*/*.js
