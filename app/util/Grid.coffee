@@ -1,7 +1,7 @@
 # An unevenly-shaped grid of tiles
 Ext.define "entropy.util.Grid",
     alternateClassName: "Grid"
-    require: ["entropy.util.Coord"]
+    requires: ["entropy.util.Coord"]
 
     # An unevenly-shaped grid of tiles
     # @param {Coord} Size of the bounding grid (zero-indexed)
@@ -23,15 +23,3 @@ Ext.define "entropy.util.Grid",
         out = ((if (i+1) % (@size.x+1) == 0 then "#{s}\n" else "#{s}") for s, i in @layout).join('').replace(/0/g,' ')
         "Grid(\n#{out})"
 
-# map grid to an Ext type
-# TODO: figure out how to put this here instead of in the model somewhere
-###
-Ext.apply Ext.data.Types,
-    GRID:
-        convert: (v, rec) ->
-            alert rec.layout
-            new Grid(new Coord(rec.size.x, rec.size.y), rec.layout)
-        sortType: (v) ->
-            1  # no obvious way to sort a set of grid objects
-        type: 'grid'
-###

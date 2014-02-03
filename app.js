@@ -17,7 +17,8 @@ Ext.application({
         'Ext.MessageBox',
         'entropy.util.Coord',
         'entropy.util.Vector',
-        'entropy.util.Grid'
+        'entropy.util.Grid',
+        'entropy.type.GridType'
     ],
 
     views: [
