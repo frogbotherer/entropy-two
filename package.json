@@ -16,6 +16,7 @@
       "grunt-contrib-jasmine": "latest",
       "grunt-sencha-jasmine": "latest",
       "jasmine-sencha": "latest",
+      "jasmine-async": "derickbailey/jasmine.async",
       "grunt-sencha-dependencies": "latest",
       "cucumber": "latest",
       "grunt-cucumber": "latest",

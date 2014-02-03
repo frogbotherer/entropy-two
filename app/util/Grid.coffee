@@ -6,13 +6,13 @@ Ext.define "entropy.util.Grid",
     # An unevenly-shaped grid of tiles
     # @param {Coord} Size of the bounding grid (zero-indexed)
     # @param {int[]} Array of ints representing tiles. 0 for empty
-    constructor: (@gridSize, @layout=null) ->
+    constructor: (@size, @layout=null) ->
         # if layout isn't supplied, create an empty one
         if not @layout?
-            @layout = Array.apply(null, Array((@gridSize.x + 1) * (@gridSize.y + 1))).map((i) -> 0)
+            @layout = Array.apply(null, Array((@size.x + 1) * (@size.y + 1))).map((i) -> 0)
         
         # validate that layout matches gridsize
-        throw Error("Grid layout doesn't match supplied size") if @layout.length != (@gridSize.x + 1) * (@gridSize.y + 1)
+        throw Error("Grid layout doesn't match supplied size") if @layout.length != (@size.x + 1) * (@size.y + 1)
 
         # validate content of layout
         throw Error("Grid layout contains invalid data") if @layout.reduce(((a, b) -> a or (b < 0) or (b > 1)), false)
@@ -20,14 +20,18 @@ Ext.define "entropy.util.Grid",
 
     # Shows layout
     toString: ->
-        out = ((if (i+1) % (@gridSize.x+1) == 0 then "#{s}\n" else "#{s}") for s, i in @layout).join('').replace(/0/g,' ')
+        out = ((if (i+1) % (@size.x+1) == 0 then "#{s}\n" else "#{s}") for s, i in @layout).join('').replace(/0/g,' ')
         "Grid(\n#{out})"
 
 # map grid to an Ext type
+# TODO: figure out how to put this here instead of in the model somewhere
+###
 Ext.apply Ext.data.Types,
     GRID:
-        convert: (v, data) ->
-            new entropy.util.Grid(data.gridSize, data.layout)
+        convert: (v, rec) ->
+            alert rec.layout
+            new Grid(new Coord(rec.size.x, rec.size.y), rec.layout)
         sortType: (v) ->
-            v.gridSize.x  # a bit arbitrary
+            1  # no obvious way to sort a set of grid objects
         type: 'grid'
+###

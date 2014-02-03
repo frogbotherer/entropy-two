@@ -1,7 +1,19 @@
 describe "Grid object", ->
-    beforeEach ->
+
+    async = new AsyncSpec(this)
+
+    async.beforeEach (done) ->
+        # require dependent helper classes
         Ext.syncRequire "entropy.util.Grid"
         Ext.syncRequire "entropy.util.Coord"
+
+        # so that the ships store is available
+        Ext.syncRequire "entropy.model.Ship"
+        Ext.syncRequire "entropy.store.Ships"
+        ships = new entropy.store.Ships()
+        ships.on "load", ->
+            # on load, call done()
+            done()
 
     it "should load Grid helper via syncRequire", ->
         expect(entropy.util.Grid).not.toBe(undefined)
@@ -38,11 +50,8 @@ describe "Grid object", ->
         expect("#{a}").toEqual("Grid(\n1 1\n 1 \n)")
 
     it "should act as an Ext data type", ->
-        Ext.syncRequire("entropy.model.Ship")
-        entropy.model.Ship.load 2, # pod
-            success: (pod) ->
-                a = pod.get("grid")
-                expect("#{a}").toEqual("Grid(\n1\n)")
-            failure: (pod) ->
-                fail()
-                
+        pod = Ext.getStore("entropy.store.Ships").getById(2) # pod
+        expect(pod).not.toBe(null)
+        a = pod.get("grid")
+        expect("#{a}").toEqual("Grid(\n1\n)")
+

@@ -10,6 +10,7 @@ module.exports = (grunt) ->
                     globals: [
                         "Ext",
                         "entropy","Coord","Vector","Grid",
+                        "alert",
                         ]
                 src: "app/**/*.coffee"
             tests:
@@ -17,7 +18,8 @@ module.exports = (grunt) ->
                     globals: [
                         "Ext",
                         "entropy","Coord","Vector","Grid",
-                        "describe","it","xit","expect","beforeEach","alert","fail"
+                        "describe","it","xit","expect","beforeEach","alert","fail",
+                        "done","runs","waitsFor","AsyncSpec",
                         ]
                 src: "tests/specs/**/*.coffee"
 
@@ -77,7 +79,7 @@ module.exports = (grunt) ->
                     extLoaderPaths:
                         "entropy": ["build/output/coverage/app"] # "entropy": "app/"
                     specs: "tests/specs/**/*.js"
-                    helpers: ["touch/sencha-touch-all-debug.js","node_modules/jasmine-sencha/jasmine-sencha.js"]
+                    helpers: ["touch/sencha-touch-all-debug.js","node_modules/jasmine-sencha/jasmine-sencha.js","node_modules/Jasmine.Async/src/jasmine.async.js"]
                     keepRunner: true
 
         # cucumber tests

@@ -16,26 +16,7 @@ module.exports.World = (callback) ->
     )        
 
     # basic fixtures for testing
-    # TODO: this belongs in an init function for the game somewhere
-    @shipStore = Ext.create "Ext.data.Store",
-        storeId: "shipStore"
-        model: "Ship"
-
-###
-# take data from ajax store instead
-        data: [
-            name: "Shuttle"
-            grid: new Grid(new Coord(5, 5), [
-                0, 0, 1, 1, 0, 0
-                0, 1, 1, 1, 1, 0
-                0, 1, 1, 1, 1, 0
-                1, 1, 1, 1, 1, 1
-                1, 1, 1, 1, 1, 1
-                1, 1, 1, 1, 1, 1
-                ])
-        ,
-            name: "Pod"
-            grid: new Grid(new Coord(0, 0), [1])
-        ]
+    # TODO: put this in a common test support library
     
-###
+    @shipStore = Ext.getStore "entropy.store.Ships"
+
