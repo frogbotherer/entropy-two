@@ -14,5 +14,8 @@ Ext.define "entropy.model.Ship",
         ,
             name: 'grid'
             type: Ext.data.Types.GRID
+        ,
+            name: 'basePrice'
+            type: 'int'
         ]
         idProperty: 'id'
