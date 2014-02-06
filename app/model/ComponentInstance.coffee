@@ -5,11 +5,9 @@ Ext.define "entropy.model.ComponentInstance",
         fields: [
         ]
         identifier: 'uuid'
-        proxy:
-            type: 'localstorage'
-            id: 'entropy.model.ComponentInstance'
         hasOne: "entropy.model.Component"
         belongsTo: [
             "entropy.model.Shipyard"
         ]
-        
+
+            

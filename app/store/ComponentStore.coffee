@@ -1,6 +1,5 @@
 Ext.define "entropy.store.ComponentStore",
     extend: "Ext.data.Store"
-    require: "entropy.model.Component"
     config:
         storeId: "entropy.store.ComponentStore"
         model: "entropy.model.Component"

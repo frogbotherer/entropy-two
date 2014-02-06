@@ -1,6 +1,7 @@
 # Represents a shipyard in a station.
 Ext.define "entropy.model.Shipyard",
     extend: "Ext.data.Model"
+    requires: ["entropy.model.ComponentInstance"]
     config:
         fields: [
             name: 'name'
@@ -13,4 +14,15 @@ Ext.define "entropy.model.Shipyard",
         proxy:
             type: 'localstorage'
             id: 'entropy.model.Shipyard'
-        hasMany: 'entropy.model.ComponentInstance'
+        hasMany:
+            model: 'entropy.model.ComponentInstance'
+            name: 'componentInstances'
+
+    ##
+    # methods
+
+    # generateStock
+    # Generate representative stock for the shipyard
+    #generateStock: ->
+    #    @componentInstances().add
+    #        entropy.model.ComponentInstance.random(@level)

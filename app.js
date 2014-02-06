@@ -35,7 +35,7 @@ Ext.application({
     ],
 
     stores: [
-        'entropy.store.Ships',
+        'entropy.store.ShipStore',
         'entropy.store.ComponentStore'
     ],
 

@@ -1,8 +1,8 @@
-Ext.define "entropy.store.Ships",
+Ext.define "entropy.store.ShipStore",
     extend: "Ext.data.Store"
     require: "entropy.model.Ship"
     config:
-        storeId: "entropy.store.Ships"
+        storeId: "entropy.store.ShipStore"
         model: "entropy.model.Ship"
         autoLoad: true
         proxy:

@@ -1,4 +1,4 @@
-ShipyardSteps = ->
+module.exports = ->
     @Given /the player has a (.*) ship/, (ship, callback) ->
         s = @shipStore.queryBy (record,id) ->
             record.get('name') == ship
@@ -33,4 +33,4 @@ ShipyardSteps = ->
     @Then /an? (.*) component is drawn on the grid/, (component, callback) ->
         callback.pending()
 
-module.exports = ShipyardSteps
+
