@@ -7,13 +7,10 @@ Ext.define "entropy.model.Shipyard",
             name: 'name'
             type: 'string'
         ,
-            name: 'level'
+            name: 'techLevel'
             type: 'int'
         ]
         identifier: 'uuid'
-        proxy:
-            type: 'localstorage'
-            id: 'entropy.model.Shipyard'
         hasMany:
             model: 'entropy.model.ComponentInstance'
             name: 'componentInstances'
@@ -24,5 +21,4 @@ Ext.define "entropy.model.Shipyard",
     # generateStock
     # Generate representative stock for the shipyard
     #generateStock: ->
-    #    @componentInstances().add
-    #        entropy.model.ComponentInstance.random(@level)
+    #    @componentInstances().addRandom(@techLevel)

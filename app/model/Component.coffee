@@ -17,6 +17,9 @@ Ext.define "entropy.model.Component",
         ,
             name: 'basePrice'
             type: 'int'
+        ,
+            name: 'techLevel'
+            type: 'int'
         ]
         idProperty: 'id'
         belongsTo: 'entropy.model.ComponentInstance'

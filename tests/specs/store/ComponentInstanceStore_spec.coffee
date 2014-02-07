@@ -24,3 +24,11 @@ describe "ComponentInstance Store", ->
         expect(s).toBeDefined()
         expect(s).toBe(@instanceStore)
 
+    it "should persist using local storage", ->
+        # TODO
+        #ci = new entropy.model.ComponentInstance
+        #    techLevel: 5
+            
+
+    it "allows addition of new random instances to the store", ->
+        # TODO
