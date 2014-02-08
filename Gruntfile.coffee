@@ -87,7 +87,7 @@ module.exports = (grunt) ->
             tests:
                 src: "tests/features"
                 options:
-                    steps: "tests/steps"
+                    steps: "tests/features/steps"
 
         # plato setup
         plato:
