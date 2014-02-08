@@ -10,5 +10,5 @@ touch/
 app/*/*.js
 tests/specs/*/*.js
 tests/steps/*.js
-tests/features/support/*.js
+tests/features/*/*.js
 _SpecRunner.html
