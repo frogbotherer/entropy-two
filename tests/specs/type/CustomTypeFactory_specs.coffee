@@ -6,10 +6,10 @@ describe "custom type factory", ->
         expect(entropy.type.CustomTypeFactory).toBeDefined()
         
     it "should create a GRID type", ->
-        grid = entropy.type.CustomTypeFactory.create("entropy.type.GridType")
+        grid = entropy.type.CustomTypeFactory.create("entropy.type.GridType", "GRID")
         expect(grid).toBe(Ext.data.Types.GRID)
 
     it "should add the GRID type to Ext.data.Types", ->
-        grid = entropy.type.CustomTypeFactory.create("entropy.type.GridType")
+        grid = entropy.type.CustomTypeFactory.create("entropy.type.GridType", "GRID")
         expect(Ext.data.Types.GRID).toBeDefined()
         expect(Ext.data.Types.GRID.convert).toBeDefined()

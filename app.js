@@ -14,6 +14,7 @@ Ext.application({
     name: 'entropy',
 
     requires: [
+        'Ext.data.Types',  // get this in first for custom types to work
         'Ext.MessageBox',
         'entropy.util.Coord',
         'entropy.util.Vector',
