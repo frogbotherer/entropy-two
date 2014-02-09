@@ -1,7 +1,7 @@
 # Represents cartesian coordinates on a grid
 Ext.define "entropy.util.Coord",
     alternateClassName: "Coord"
-    require: ["entropy.util.Vector"]
+    requires: ["entropy.util.Vector"]
 
     # Represents cartesian coordinates on a grid
     # @param {int} X coordinate

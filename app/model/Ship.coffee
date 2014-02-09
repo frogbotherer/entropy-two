@@ -1,9 +1,10 @@
 # dependencies
-Ext.syncRequire "entropy.type.GridType"
+Ext.syncRequire "entropy.type.CustomTypeFactory"
 
 # Represents a kind of space-faring ship
 Ext.define "entropy.model.Ship",
     extend: "Ext.data.Model"
+    requires: ["entropy.type.CustomTypeFactory"]
     config:
         fields: [
             name: 'id'
@@ -13,7 +14,7 @@ Ext.define "entropy.model.Ship",
             type: 'string'
         ,
             name: 'grid'
-            type: Ext.data.Types.GRID
+            type: entropy.type.CustomTypeFactory.create("entropy.type.GridType", "GRID")
         ,
             name: 'basePrice'
             type: 'int'

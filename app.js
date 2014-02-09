@@ -18,7 +18,7 @@ Ext.application({
         'entropy.util.Coord',
         'entropy.util.Vector',
         'entropy.util.Grid',
-        'entropy.type.GridType'
+        'entropy.type.CustomTypeFactory'
     ],
 
     views: [

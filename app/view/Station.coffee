@@ -23,12 +23,12 @@ Ext.define 'entropy.view.Station',
                 docked: 'top'
                 xtype: 'titlebar'
                 title: 'Shipyard foobar'
-            ,
-                docked: 'left'
-                xtype: 'entropy.shipyard.componentinstance.list'
-            ,
-                docked: 'right'
-                xtype: 'entropy.shipyard.ship.grid'
+            #,
+            #    docked: 'left'
+            #    xtype: 'entropy.shipyard.componentinstance.list'
+            #,
+            #    docked: 'right'
+            #    xtype: 'entropy.shipyard.ship.grid'
             ]
         ]
         

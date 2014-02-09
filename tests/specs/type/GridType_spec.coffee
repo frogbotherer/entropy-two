@@ -1,7 +1,8 @@
 describe "grid type", ->
     beforeEach ->
-        Ext.syncRequire "entropy.type.GridType"
         Ext.syncRequire "entropy.util.Grid"
+        Ext.syncRequire "entropy.type.CustomTypeFactory"
+        entropy.type.CustomTypeFactory.create("entropy.type.GridType", "GRID")
 
     it "should add GRID to the standard set of data types", ->
         expect(Ext.data.Types.GRID).toBeDefined()

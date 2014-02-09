@@ -9,8 +9,8 @@ describe "Grid object", ->
 
         # so that the ships store is available
         Ext.syncRequire "entropy.model.Ship"
-        Ext.syncRequire "entropy.store.Ships"
-        ships = new entropy.store.Ships()
+        Ext.syncRequire "entropy.store.ShipStore"
+        ships = new entropy.store.ShipStore()
         ships.on "load", ->
             # on load, call done()
             done()
@@ -50,7 +50,7 @@ describe "Grid object", ->
         expect("#{a}").toEqual("Grid(\n1 1\n 1 \n)")
 
     it "should act as an Ext data type", ->
-        pod = Ext.getStore("entropy.store.Ships").getById(2) # pod
+        pod = Ext.getStore("entropy.store.ShipStore").getById(2) # pod
         expect(pod).not.toBe(null)
         a = pod.get("grid")
         expect("#{a}").toEqual("Grid(\n1\n)")

@@ -83,11 +83,11 @@ module.exports = (grunt) ->
                     keepRunner: true
 
         # cucumber tests
-        cucumberjs:
-            tests:
-                src: "tests/features"
-                options:
-                    steps: "tests/features/steps"
+        #cucumberjs:
+        #    tests:
+        #        src: "tests/features"
+        #        options:
+        #            steps: "tests/features/steps"
 
         # plato setup
         plato:
@@ -131,7 +131,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-contrib-coffee"
     grunt.loadNpmTasks "grunt-cson"
     grunt.loadNpmTasks "grunt-sencha-jasmine"
-    grunt.loadNpmTasks "grunt-cucumber"
+    #grunt.loadNpmTasks "grunt-cucumber"
     grunt.loadNpmTasks "grunt-sencha-dependencies"
     grunt.loadNpmTasks "grunt-contrib-watch"
     grunt.loadNpmTasks "grunt-istanbul"
@@ -141,7 +141,7 @@ module.exports = (grunt) ->
 
     # register tasks
     grunt.registerTask "compile", ["coffee_jshint:src","coffee:src","cson:src"]
-    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","cucumberjs:tests","storeCoverage","makeReport"]
+    grunt.registerTask "test", ["coffee_jshint:tests","coffee:tests","instrument","sencha_jasmine:tests","storeCoverage","makeReport"]
     grunt.registerTask "build", ["sencha_dependencies:build","plato:build","jsduck:build"]
     grunt.registerTask "run", ["ripple:run"]
 
