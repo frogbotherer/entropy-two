@@ -7,8 +7,5 @@ Ext.define "entropy.model.ShipInstance",
             type: 'string'
         ]
         identifier: 'uuid'
-        proxy:
-            type: 'localstorage'
-            id: 'entropy.model.ShipInstance'
         hasOne: 'entropy.model.Ship'
         hasMany: 'entropy.model.ComponentInstance'
