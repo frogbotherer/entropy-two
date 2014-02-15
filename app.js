@@ -24,7 +24,8 @@ Ext.application({
 
     views: [
         'Main',
-        'Station'
+        'entropy.view.Station',
+        'entropy.view.shipyard.Main'
     ],
 
     models: [

@@ -1,34 +1,29 @@
 Ext.define 'entropy.view.Station',
-    extend: 'Ext.tab.Panel'
-    xtype: 'main'
-    requires: ['Ext.TitleBar']
+    extend: 'Ext.navigation.View'
+    requires: [
+        'Ext.Button',
+        'Ext.Panel',
+        'entropy.view.shipyard.Main',
+    ]
     config:
-        tabBarPosition: 'bottom'
+        fullscreen: true,
         items: [
-            title: 'Station'
-            iconCls: 'home'
-            styleHtmlContent: true
-            scrollable: true
-            items:
-                docked: 'top'
-                xtype: 'titlebar'
-                title: 'Welcome to foobar Station in the boobaz System'
-            html: """
-                (some vital statistics will go here)
-            """
-        , # /item 0
-            title: 'Shipyard'
-            iconCls: 'action'
+            title: 'Station [station name] in System [system name]',
             items: [
-                docked: 'top'
-                xtype: 'titlebar'
-                title: 'Shipyard foobar'
-            #,
-            #    docked: 'left'
-            #    xtype: 'entropy.shipyard.componentinstance.list'
-            #,
-            #    docked: 'right'
-            #    xtype: 'entropy.shipyard.ship.grid'
+                xtype: 'panel'
+                html: '<b>[station info]</b>'
+            ,
+                xtype: 'button'
+                text: '[Shipyard] [shipyard name]'
+                handler: ->
+                    stationView = @up().up()
+                    stationView.push(
+                        Ext.create("entropy.view.shipyard.Main", stationView))
+            ,
+                xtype: 'button'
+                text: '[Exchange] [exchange name]'
+            ,
+                xtype: 'button'
+                text: '[Recruitment] [bar|cantina|etc]'
             ]
         ]
-        
